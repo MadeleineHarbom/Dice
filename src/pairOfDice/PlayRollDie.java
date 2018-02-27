@@ -23,7 +23,10 @@ public class PlayRollDie {
             }
             else if (input.toLowerCase().startsWith("j")) {
                 System.out.println(turn.RollBothDice());
+                System.out.println("Det højeste kast endnu er " +turn.getHighestRoll());
             }
+
+
 
 
 
