@@ -100,6 +100,20 @@ public class PairOfDice {
 
     }
 
+    public int getRolls() {
+        return this.rolls;
+    }
+
+    public void printStuff() {
+        System.out.println("Du har slået 1 tal " + this.ones + " gange");
+        System.out.println("Du har slået 2 tal " + this.twos + " gange");
+        System.out.println("Du har slået 3 tal " + this.threes + " gange");
+        System.out.println("Du har slået 4 tal " + this.fours + " gange");
+        System.out.println("Du har slået 5 tal " + this.fives + " gange");
+        System.out.println("Du har slået 6 tal " + this.sixes + " gange");
+        System.out.println("Du har slået dobbelt " + this.rolldouble + " gange");
+    }
+
     public void resetPairOfDice() {
         this.rolls = 0;
         this.ones = 0;
