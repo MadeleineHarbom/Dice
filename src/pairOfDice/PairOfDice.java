@@ -104,13 +104,13 @@ public class PairOfDice {
         return this.rolls;
     }
 
-    public void printStuff() {
-        System.out.println("Du har slået 1 tal " + this.ones + " gange");
-        System.out.println("Du har slået 2 tal " + this.twos + " gange");
-        System.out.println("Du har slået 3 tal " + this.threes + " gange");
-        System.out.println("Du har slået 4 tal " + this.fours + " gange");
-        System.out.println("Du har slået 5 tal " + this.fives + " gange");
-        System.out.println("Du har slået 6 tal " + this.sixes + " gange");
+    public void printRollInfo() {
+        System.out.println("Du har slået " + this.ones + " 1'ere");
+        System.out.println("Du har slået " + this.twos + " 2'ere");
+        System.out.println("Du har slået " + this.threes + " 3'ere");
+        System.out.println("Du har slået " + this.fours + " 4'ere");
+        System.out.println("Du har slået " + this.fives + " 5'ere");
+        System.out.println("Du har slået " + this.sixes + " 6'ere");
         System.out.println("Du har slået dobbelt " + this.rolldouble + " gange");
     }
 
@@ -124,6 +124,8 @@ public class PairOfDice {
         this.sixes = 0;
         this.rolldouble = 0;
         this.highestRoll = 0;
+        die1.setFaceValue(0);
+        die2.setFaceValue(0);
     }
 
 

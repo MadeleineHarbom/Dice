@@ -8,11 +8,11 @@ public class PlayRollDie {
 
 
     public void welcome() {
-        System.out.println("Welcome to the game!");
+        System.out.println("Let the gaaaames begin");
 
     }
 
-    public void roll() {
+    public void gameLoop() {
         boolean finnished = false;
 
         while (!finnished) {
@@ -20,7 +20,7 @@ public class PlayRollDie {
             System.out.println("Vil du kaste? Ja eller Nej");
             String input = in.next();
             if (input.toLowerCase().startsWith("n")) {
-                turn.printStuff();
+                turn.printRollInfo();
                 System.out.println("Det højeste kast endnu er " +turn.getHighestRoll());
                 turn.resetPairOfDice();
                 System.out.println("Spille igen?");
@@ -37,17 +37,13 @@ public class PlayRollDie {
                 System.out.println(turn.RollBothDice());
 
             }
-
-
-
-
-
         }
+
     }
 
-
-
-
+    public void bye() {
+        System.out.println("Tak for at du spillede");
+    }
 
 
 }

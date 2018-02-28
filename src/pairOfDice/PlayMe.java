@@ -8,10 +8,10 @@ public class PlayMe {
         PlayRollDie game = new PlayRollDie();
 
         game.welcome();
-        game.roll();
-        System.out.println("Tak for at du spillede");
+        game.gameLoop();
+        game.bye();
 
-        //game.RollBothDice();
+
 
     }
 

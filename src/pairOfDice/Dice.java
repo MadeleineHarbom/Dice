@@ -23,13 +23,13 @@ public class Dice {
     }
 
 
-    /*
+
     public void setFaceValue(int value) {
         if (value > 0 && value <= sides) {
             faceValue = value;
         }
     }
-    */
+
 
 
     public int getFaceValue() {
