@@ -30,20 +30,25 @@ public class RollPiggy {
         System.out.println("Hvad heder spilleren?");
         String inputName1 = in.nextLine();
         Player p = new Player(inputName1);
-        return p; }
+        return p;
+    }
 
 
     private Player turn(Player player) {
         Player winner;
         player.setCurrent();
-        System.out.println("Your banked points are " + player.getBanked());
-        System.out.println("Let's roll");
+        System.out.println(player.getName() + "'s banked points are " + player.getBanked());
+        System.out.println("Let's roll, " + player.getName() + "!");
         in.nextLine();
-        boolean playing = true;
-        die.roll(); // BREAK IN ROLL =1 !!!
+        boolean playing = true; // REDUNDANT!
+        die.roll();
+        if (die.getFaceValue() == 1) { // NEW
+            System.out.println(player.getName() + " rolled 1 and loose their turn"); //NEW
+            return winner = null; // NEW
+        }
         player.addToCurrent(die.getFaceValue());
-        System.out.println("You rolled " + die.getFaceValue() + ", making your score " + player.getCurrent());
-        winner = check100(Player);
+        System.out.println(player.getName() + " rolled " + die.getFaceValue() + ", making their score " + player.getCurrent());
+        winner = check100(player);
         if (this.gameOn == false) {
             return winner;
         }
@@ -51,35 +56,42 @@ public class RollPiggy {
         String cont = in.nextLine();
         if (cont.toLowerCase().startsWith("j") || cont.toLowerCase().startsWith("y")) {
             while (playing == true) {
-                System.out.println("Your banked points are " + player.getBanked());
+                System.out.println(player.getName() + "'s banked points are " + player.getBanked());
                 die.roll();
+                if (die.getFaceValue() == 1) { // NEW
+                    System.out.println(player.getName() + " rolled 1 and loose their turn");
+                    break; // NEW
+                }
                 player.addToCurrent(die.getFaceValue());
-                System.out.println("You rolled " + die.getFaceValue() + ", making your score " + player.getCurrent());
+                System.out.println(player.getName() + " rolled " + die.getFaceValue() + ", making their score " + player.getCurrent());
+                winner = check100(player); // NEW
+                if (this.gameOn == false) { // NEW
+                    return winner; // NEW
+                }
                 System.out.println("Vil du slå igen (skriv ja) ellers går turen videre");
                 String cont2 = in.nextLine();
-                if (cont.toLowerCase().startsWith("j") || cont.toLowerCase().startsWith("y")) {
+                if (cont2.toLowerCase().startsWith("j") || cont2.toLowerCase().startsWith("y")) { // BUG FIX
                     continue;
                 } else {
                     player.setBanked();
                     return winner;
                 }
             }
-        }
-        else {
-                player.setBanked();
-                return winner;
-
+        } else {
+            player.setBanked();
+            return winner;
 
 
         }
+        return winner;
 
 
     }
 
 
-    private Player check100 (Player player) {
-        Player winner = null; // Make me null
-        if (player.getCurrent() >= 100 ) {
+    private Player check100(Player player) {
+        Player winner = null;
+        if (player.getCurrent() >= 10) { // FIX ME
             winner = player;
             this.gameOn = false;
 
@@ -89,21 +101,33 @@ public class RollPiggy {
 
     }
 
-
-    public void gameLoop() {
-        Player p1 =setUp();
-        Player p2 = setUp();
-        while (this.gameOn) {
-            turn(p1);
-            if (this.gameOn ==false) {
-                break;
-            }
-            turn(p2);
-
-        }
-
+    private void gameOver(Player player) {
+        System.out.println(player.getName() + " won! Grats");
     }
 
 
+    public void gameLoop() {
+        Player stuff = null; //NEW
+        Player p1 = setUp();
+        Player p2 = setUp();
+        while (this.gameOn == true) { // NEW
+            turn(p1);
+            stuff = check100(p1); // NEW
+            if (this.gameOn == false) {
+                gameOver(stuff);
+                break;
+            }
+            turn(p2);
+            stuff = check100(p2); // NEW
+            if (this.gameOn == false) { // NEW
+                gameOver(stuff); // NEW
+                break; // NEW
 
+            }
+            //gameOver(stuff);
+
+        }
+
+
+    }
 }
